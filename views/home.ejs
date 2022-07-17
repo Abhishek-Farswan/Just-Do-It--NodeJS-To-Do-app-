@@ -1,0 +1,135 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Just Do It! &#9989;</title>
+     <link rel="shortcut icon" type="image/x-icon" href="/images/fav-icon.jpg">
+     <link rel="stylesheet" href="css/home.css" type="text/css">
+     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.0/css/all.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+ </head>
+ 
+ <body>
+
+    <header>
+    
+    <div id="home-header">
+        <img id="home-logo" src="/images/fav-icon.jpg" alt="Logo">
+        <h1 id="home-head">Just Do It!  &#9989;</h1>
+    </div>
+
+    <div id="list-empty"><p>Hi there!!! Let's begin adding your task , click on the ADD button
+    </p></div>
+
+    <div id="head-content">
+    
+        <div id="head-content-buttons">
+            
+            <button class="head-button" id="head-addTask-button">
+                <i class="fa-solid fa-list-check head-button-i"></i>
+                Add a Task
+            </button>
+
+            <input type="number" id="number" value="0" style="display: none;"></input>
+
+            <button class="head-button" id="head-deleteTask-button">
+                <i class="fa-solid fa-trash head-button-i"></i>
+                Delete Task
+            </button>
+        </div>
+    
+    </div>
+
+    </header>
+
+<!-- Modal Section-->
+<div class="bg-modal" id="bg-modal">
+    <div class="modal-content">
+    <div class="logo-and-heading">    
+    <img id="popup-logo" src="images/task-add.png" alt="Task-add-img">
+    <h1 id="popup-heading">New Task</h1>
+    <i id="icon-close" class="fa-solid fa-circle-xmark"></i>
+    </div>    
+    
+    <div id="popup-form">
+    <form action="/create-task" class="form" method="POST">
+       
+    <div id="popup-desc">
+        <label id="desc-head" for="desc">Description</label>
+        <input type="text" name="desc" id="desc" placeholder="What do you need to do?" required>
+    </div>
+
+    <div id="popup-content">
+        
+        <div id="popup-content-labels">
+            <label for="category">Category</label>
+            <label for="priority">Priority</label>
+            <label for="dueDate">Due Date</label>
+        </div>
+
+
+        <div id="popup-content-labels-content">
+
+       
+          <select id="category" name="category" required>
+            <option value="Home">Home</option>
+            <option value="Office">Office</option>
+            <option value="Friends">Friends</option>
+            <option value="Personal">Personal</option>
+            <option value="Others">Other</option>
+            </select>
+        
+            
+            <select id="priority" name="priority" required>
+              <option value="Low">Low</option>
+              <option value="Moderate">Moderate</option>
+              <option value="High">High</option>
+              </select>    
+
+              
+              <input type="date" id="dueDate" name="dueDate" required>
+              
+              
+        </div>
+
+    </div>
+
+    <div id="popup-btn-div">
+    <button id="popup-button" type="submit">
+        <i id="popup-button-i" class="fa-solid fa-circle-plus"></i>
+        Add Task
+    </button>
+    </div>
+    </form>
+    </div>
+</div> 
+    
+</div>
+
+<!--  Addition of Tasks  -->
+<div>
+    <ul id="task-list" style="list-style-type: none;">
+        <% for (let i of task_List){%>
+            <li class="task-items" >
+                <div id="task-item-content1">
+                <input type="checkbox" id="task-item-checkbox" name="tasks" value=<%=i._id%>>
+                <span id="task-item-desc"> <%=i.desc%> </span>
+                <span id="task-item-category" class="task-labels"><%=i.category%></span>    
+                <span id="task-item-priority" class="task-labels"><%=i.priority%></span>    
+            </div>
+                <h6 id="task-item-dueDate">Due Date: <%=i.dueDate%></h6>
+                
+            </li>
+        <%}%>
+    </ul>
+</div>
+
+
+<!-- Addition of External Script -->
+<script src="javascript/popup_script.js"></script>
+<script src="javascript/delete_tasks.js"></script>
+
+ </body>
+ </html>   
